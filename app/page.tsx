@@ -19,7 +19,7 @@ export default function Home() {
         <section
           id="top"
           aria-label="Introduction"
-          className="flex flex-col pt-28 pb-24 sm:pt-36"
+          className="flex flex-col pt-24 pb-24 sm:pt-28"
         >
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-muted">
             Agentic AI Engineer

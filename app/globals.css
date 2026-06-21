@@ -20,6 +20,12 @@
     "Times New Roman", serif;
 }
 
+html {
+  /* Reserve the scrollbar gutter on both sides so the centered column
+     never shifts when a vertical scrollbar appears or disappears. */
+  scrollbar-gutter: stable both-edges;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
