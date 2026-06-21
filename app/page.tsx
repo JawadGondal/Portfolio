@@ -2,15 +2,19 @@
 // All content lives here for now; we split into data files later.
 
 const EMAIL = "jawadayubgondal@gmail.com";
+const LINKEDIN_URL =
+  "https://www.linkedin.com/in/m-jawad-ayub-gondal-91103617a";
+const GITHUB_URL = "https://github.com/JawadGondal";
 
 const links = [
   { label: "Email", href: `mailto:${EMAIL}` },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/m-jawad-ayub-gondal-profile",
-  },
-  { label: "GitHub", href: "https://github.com/JawadGondal" },
+  { label: "LinkedIn", href: LINKEDIN_URL },
+  { label: "GitHub", href: GITHUB_URL },
 ];
+
+// Shared style for the hero and contact action buttons.
+const actionLinkClass =
+  "inline-flex items-center rounded-md border border-border bg-foreground/[0.015] px-3.5 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent/40 hover:bg-accent/[0.06] hover:text-accent";
 
 // TODO: replace Slide Worlds' live link with the real Play Store URL.
 const PLAY_STORE_URL = "#";
@@ -81,7 +85,7 @@ export default function Home() {
                 rel={
                   href.startsWith("mailto:") ? undefined : "noopener noreferrer"
                 }
-                className="inline-flex items-center rounded-md border border-border bg-foreground/[0.015] px-3.5 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent/40 hover:bg-accent/[0.06] hover:text-accent"
+                className={actionLinkClass}
               >
                 {label}
               </a>
@@ -154,6 +158,67 @@ export default function Home() {
               </article>
             ))}
           </div>
+        </section>
+
+        <section
+          id="about"
+          aria-label="About"
+          className="border-t border-border pt-16 pb-20 sm:pt-20"
+        >
+          <h2 className="font-serif text-3xl tracking-tight text-foreground">
+            About
+          </h2>
+
+          <div className="mt-8 flex max-w-xl flex-col gap-5 text-base leading-relaxed text-muted">
+            <p>
+              I&apos;m an Agentic AI Engineer based in Islamabad. Currently at
+              MindHYVE.ai working on adaptive learning systems with cognitive
+              profiling and personalization engines. Before that I built across
+              AI Mark Labs, Metrico Dev, ITSOLERA, and freelance.
+            </p>
+            <p>
+              My stack is Python, FastAPI, LangChain, LlamaIndex, CrewAI,
+              Anthropic and OpenAI APIs, Pinecone, Weaviate, and Next.js. I have
+              an MS in Systems Engineering from GIK Institute and a BS in
+              Electrical Engineering from PIEAS. I work best when I get to own a
+              system end to end, from architecture to deployment.
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="contact"
+          aria-label="Contact"
+          className="border-t border-border pt-16 pb-20 sm:pt-20"
+        >
+          <h2 className="font-serif text-3xl tracking-tight text-foreground">
+            Contact
+          </h2>
+
+          <p className="mt-8 max-w-xl text-base leading-relaxed text-muted">
+            If you&apos;re hiring for a remote AI or Forward Deployed Engineer
+            role, or you need an agentic system built right, I&apos;d like to
+            hear from you.
+          </p>
+
+          <nav
+            aria-label="Contact links"
+            className="mt-8 flex flex-wrap gap-3"
+          >
+            {links.map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={
+                  href.startsWith("mailto:") ? undefined : "noopener noreferrer"
+                }
+                className={actionLinkClass}
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
         </section>
       </main>
 
