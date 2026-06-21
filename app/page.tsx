@@ -12,6 +12,34 @@ const links = [
   { label: "GitHub", href: "https://github.com/JawadGondal" },
 ];
 
+// TODO: replace Slide Worlds' live link with the real Play Store URL.
+const PLAY_STORE_URL = "#";
+
+const projects = [
+  {
+    name: "Reelcraft",
+    description:
+      "AI video generation studio. Text or image to vertical reel, powered by fal.ai across multiple models.",
+    stack: ["Next.js 14", "TypeScript", "Tailwind", "fal.ai"],
+    live: "https://reel-craft-rho.vercel.app",
+    source: "https://github.com/JawadGondal/ReelCraft",
+  },
+  {
+    name: "Agentic RAG System",
+    description:
+      "Production RAG pipeline with agent-driven retrieval, query rewriting, and grounded generation.",
+    stack: ["LangGraph", "Pinecone", "OpenAI", "Python"],
+    source: "https://github.com/JawadGondal/Agentic-RAG-System",
+  },
+  {
+    name: "Slide Worlds",
+    description:
+      "Sliding puzzle game shipped on Google Play. Built solo end to end, from gameplay to store submission.",
+    stack: ["Unity", "C#"],
+    live: PLAY_STORE_URL,
+  },
+];
+
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
@@ -19,7 +47,7 @@ export default function Home() {
         <section
           id="top"
           aria-label="Introduction"
-          className="flex flex-col pt-24 pb-24 sm:pt-28"
+          className="flex flex-col pt-24 pb-16 sm:pt-28"
         >
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-muted">
             Agentic AI Engineer
@@ -59,6 +87,73 @@ export default function Home() {
               </a>
             ))}
           </nav>
+        </section>
+
+        <section
+          id="work"
+          aria-label="Selected work"
+          className="border-t border-border pt-16 pb-20 sm:pt-20"
+        >
+          <h2 className="font-serif text-3xl tracking-tight text-foreground">
+            Selected Work
+          </h2>
+
+          <div className="mt-8 flex flex-col gap-4">
+            {projects.map((project) => (
+              <article
+                key={project.name}
+                className="rounded-lg border border-border bg-foreground/[0.01] p-6 transition-colors hover:border-foreground/25 hover:bg-foreground/[0.02] sm:p-8"
+              >
+                <h3 className="text-xl font-semibold tracking-tight text-foreground">
+                  {project.name}
+                </h3>
+
+                <p className="mt-2 max-w-xl text-base leading-relaxed text-muted">
+                  {project.description}
+                </p>
+
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {project.stack.map((tech) => (
+                    <li
+                      key={tech}
+                      className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted"
+                    >
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-5 flex gap-5 text-sm font-medium">
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target={
+                        project.live.startsWith("http") ? "_blank" : undefined
+                      }
+                      rel={
+                        project.live.startsWith("http")
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
+                      className="text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                    >
+                      Live demo
+                    </a>
+                  )}
+                  {project.source && (
+                    <a
+                      href={project.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                    >
+                      Source
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
       </main>
 
