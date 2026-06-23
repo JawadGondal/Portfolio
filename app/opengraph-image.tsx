@@ -23,9 +23,9 @@ async function loadGoogleFont(family: string, text: string) {
 }
 
 export default async function Image() {
-  const [instrumentSerif, inter] = await Promise.all([
-    loadGoogleFont("Instrument+Serif", NAME),
-    loadGoogleFont("Inter:wght@400", TAGLINE),
+  const [playfair, outfit] = await Promise.all([
+    loadGoogleFont("Playfair+Display:wght@900", NAME),
+    loadGoogleFont("Outfit:wght@400", TAGLINE),
   ]);
 
   return new ImageResponse(
@@ -37,28 +37,31 @@ export default async function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
-          background: "#fafafa",
+          background: "#07070f",
+          backgroundImage:
+            "radial-gradient(ellipse 60% 50% at 75% 15%, rgba(196,181,253,0.16) 0%, transparent 60%), radial-gradient(ellipse 45% 45% at 10% 85%, rgba(0,229,204,0.12) 0%, transparent 60%)",
           padding: "80px",
         }}
       >
         <div
           style={{
-            fontFamily: "Instrument Serif",
-            fontSize: 96,
+            fontFamily: "Playfair Display",
+            fontSize: 92,
+            fontWeight: 900,
             lineHeight: 1.0,
             letterSpacing: "-0.02em",
-            color: "#141414",
-            maxWidth: 900,
+            color: "#e8e8f2",
+            maxWidth: 960,
           }}
         >
           {NAME}
         </div>
         <div
           style={{
-            fontFamily: "Inter",
-            fontSize: 36,
+            fontFamily: "Outfit",
+            fontSize: 34,
             lineHeight: 1.4,
-            color: "#565656",
+            color: "#7070a0",
             marginTop: 28,
             maxWidth: 820,
           }}
@@ -70,8 +73,8 @@ export default async function Image() {
     {
       ...size,
       fonts: [
-        { name: "Instrument Serif", data: instrumentSerif, weight: 400 as const },
-        { name: "Inter", data: inter, weight: 400 as const },
+        { name: "Playfair Display", data: playfair, weight: 900 as const },
+        { name: "Outfit", data: outfit, weight: 400 as const },
       ],
     },
   );
