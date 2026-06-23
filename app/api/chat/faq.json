@@ -1,0 +1,19 @@
+{
+  "What does Jawad do?": "**Jawad is an Agentic AI Full-Cycle Engineer** based in Islamabad, Pakistan.\n\nHe takes AI products from idea to deployment — designing, building, and shipping agentic systems end to end:\n\n- Retrieval (RAG) pipelines\n- Tool-using agents\n- The backend infrastructure that keeps them reliable in production\n\nHe works best owning a system end to end, and cares about models that reason reliably in production — not just in demos.",
+
+  "Tell me about his experience": "Jawad has shipped AI across several roles:\n\n- **MindHYVE.ai** — *Agentic AI Full-Cycle Engineer* (Nov 2025 – Present). One-product, one-developer ownership: designs, builds, integrates, and deploys complete AI products end to end.\n- **AI Mark Labs** — *AI/ML Data Engineer* (Jul 2025 – Sep 2025). Built AI workflows, RAG systems, agents, and chatbots for Evolo AI.\n- **Metrico Dev** — *Software Engineer, AI & Analytics* (Nov 2024 – Jun 2025). Research on quantum neural networks for intrusion detection, plus applied AI.\n- **ITSOLERA** — *Generative AI Engineer* (Jul 2024 – Oct 2024). Built an AI news generator, a drug-discovery system, and a multi-agent assistant.\n- **Freelance** — *AI Engineer* (Feb 2023 – Jun 2025). LangChain/LLM development, ML, agent systems, and Python ETL pipelines.",
+
+  "What has he built?": "Some of Jawad's selected work:\n\n- **Reelcraft** — AI video generation studio (text/image → vertical reel, powered by fal.ai). [Live](https://reel-craft-rho.vercel.app) · [Source](https://github.com/JawadGondal/ReelCraft)\n- **Agentic RAG System** — production retrieval pipeline with agent-driven retrieval, query rewriting, and grounded generation. [Source](https://github.com/JawadGondal/Agentic-RAG-System)\n- **Transcription Service** — speech-to-text served as a FastAPI API via faster-whisper. [Source](https://github.com/JawadGondal/transcription-service)\n- **AI News Generator** — multi-LLM workflow that gathers, edits, and analyzes news into curated insights. [Source](https://github.com/JawadGondal/AI-Powered-News-Generator)\n- **Slide Worlds** — sliding puzzle game shipped solo on Google Play (Unity, C#).",
+
+  "What are his skills?": "Jawad's technical toolkit:\n\n- **Agentic & LLM:** LangChain, LlamaIndex, CrewAI, LangGraph, RAG, tool use\n- **Models & APIs:** Anthropic API, OpenAI API, fine-tuning, prompt engineering, embeddings\n- **Backend & Data:** Python, FastAPI, Pinecone, Weaviate, PostgreSQL, REST APIs\n- **Frontend & Tools:** Next.js, TypeScript, React, Tailwind, Docker, Git",
+
+  "What is his educational background?": "Jawad's education:\n\n- **MS, Systems Engineering** — PIEAS (Pakistan Institute of Engineering & Applied Sciences), 2020–2022\n- **BS, Electrical & Electronics Engineering** — GIK Institute, 2015–2019",
+
+  "How can I contact Jawad?": "You can reach Jawad here:\n\n- **Email:** [jawadayubgondal@gmail.com](mailto:jawadayubgondal@gmail.com)\n- **LinkedIn:** [m-jawad-ayub-gondal](https://www.linkedin.com/in/m-jawad-ayub-gondal-91103617a)\n- **GitHub:** [JawadGondal](https://github.com/JawadGondal)\n\nIf you're hiring or have a project in mind, email is the fastest way to reach him.",
+
+  "Is he available for work?": "Yes — Jawad is **open to remote AI / Forward Deployed Engineer roles** and client work.\n\nThe best way to start a conversation is to email him at [jawadayubgondal@gmail.com](mailto:jawadayubgondal@gmail.com) or connect on [LinkedIn](https://www.linkedin.com/in/m-jawad-ayub-gondal-91103617a).",
+
+  "Where is he based?": "Jawad is based in **Islamabad, Pakistan**, and is open to **remote** roles worldwide.",
+
+  "What does agentic AI mean to him?": "For Jawad, agentic AI is about systems that **reason and act reliably** — tool-using agents and retrieval pipelines that hold up in production, not just in a demo. He focuses on the full cycle: design, build, integrate, and deploy, with the infrastructure and guardrails that keep agents dependable."
+}

@@ -213,16 +213,18 @@ export default function Home() {
         />
 
         <Reveal className="relative">
-          <div className="mb-7 h-20 w-20 overflow-hidden rounded-2xl ring-1 ring-border">
-            <Image
-              src={profilePic}
-              alt="Muhammad Jawad Ayub Gondal"
-              width={80}
-              height={80}
-              placeholder="blur"
-              priority
-              className="h-full w-full object-cover"
-            />
+          <div className="mb-7 w-fit rounded-2xl bg-gradient-to-br from-primary/50 via-border to-accent/40 p-px shadow-xl shadow-black/40">
+            <div className="overflow-hidden rounded-2xl ring-1 ring-white/5">
+              <Image
+                src={profilePic}
+                alt="Muhammad Jawad Ayub Gondal"
+                width={88}
+                height={88}
+                placeholder="blur"
+                priority
+                className="h-[88px] w-[88px] object-cover"
+              />
+            </div>
           </div>
 
           <div className="mb-6 flex items-center gap-2 font-mono text-xs text-accent/60">

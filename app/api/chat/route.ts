@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { SYSTEM_PROMPT } from "./profile";
+import { faqAnswer, lastUserMessage } from "./faq";
 
 // Public, billed-to-your-key endpoint — keep it cheap and abuse-resistant:
 // Haiku 4.5, a tight output cap, bounded input, and a light per-IP rate limit.
@@ -65,14 +66,25 @@ function isValidMessages(value: unknown): value is ChatMessage[] {
   );
 }
 
-export async function POST(request: Request) {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    return Response.json(
-      { error: "Chat is not configured." },
-      { status: 503 },
-    );
-  }
+const encoder = new TextEncoder();
 
+// Stream a single static string (used for the offline FAQ fallback).
+function textResponse(text: string): Response {
+  const stream = new ReadableStream<Uint8Array>({
+    start(controller) {
+      controller.enqueue(encoder.encode(text));
+      controller.close();
+    },
+  });
+  return new Response(stream, {
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
+export async function POST(request: Request) {
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
     "unknown";
@@ -95,12 +107,18 @@ export async function POST(request: Request) {
     return Response.json({ error: "Invalid messages." }, { status: 400 });
   }
 
+  // No API key (or credit exhausted, handled below) → answer from the offline
+  // FAQ so the assistant keeps working.
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return textResponse(faqAnswer(lastUserMessage(messages)));
+  }
+
   const client = new Anthropic();
 
   // Stream the model's reply back as plain text chunks.
-  const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
+      let sentAny = false;
       try {
         const llm = client.messages.stream({
           model: MODEL,
@@ -110,6 +128,7 @@ export async function POST(request: Request) {
         });
 
         llm.on("text", (delta) => {
+          sentAny = true;
           controller.enqueue(encoder.encode(delta));
         });
 
@@ -117,11 +136,15 @@ export async function POST(request: Request) {
         controller.close();
       } catch (err) {
         console.error("Chat stream error:", err);
-        // If nothing has been sent yet, surface a short message to the client.
+        // If the model never produced output (e.g. no credit, rate limited,
+        // network failure), fall back to the offline FAQ answer. If we were
+        // already mid-stream we can't cleanly switch, so just close.
         try {
-          controller.enqueue(
-            encoder.encode("Sorry — something went wrong. Please try again."),
-          );
+          if (!sentAny) {
+            controller.enqueue(
+              encoder.encode(faqAnswer(lastUserMessage(messages))),
+            );
+          }
         } catch {
           // stream already closed
         }

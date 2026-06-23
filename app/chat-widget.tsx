@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { ChatIcon, CloseIcon, SendIcon } from "./icons";
 
 type Message = { role: "user" | "assistant"; content: string };
@@ -10,6 +12,15 @@ const SUGGESTIONS = [
   "Tell me about his experience",
   "What has he built?",
 ];
+
+// Render assistant replies as markdown, styled for the dark chat panel.
+function Markdown({ children }: { children: string }) {
+  return (
+    <div className="space-y-2 [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 [&_code]:rounded [&_code]:bg-foreground/10 [&_code]:px-1 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.85em] [&_li]:ml-1 [&_ol]:list-decimal [&_ol]:space-y-1 [&_ol]:pl-5 [&_strong]:font-semibold [&_strong]:text-foreground [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5">
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{children}</ReactMarkdown>
+    </div>
+  );
+}
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
@@ -69,19 +80,26 @@ export default function ChatWidget() {
 
   return (
     <>
-      {/* Launcher button */}
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-label={open ? "Close chat" : "Ask about Jawad"}
-        className="fixed bottom-5 right-5 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-card/90 text-primary shadow-lg backdrop-blur-md transition-all hover:bg-primary/10 sm:bottom-6 sm:right-6"
-      >
-        {open ? (
-          <CloseIcon className="h-5 w-5" />
-        ) : (
-          <ChatIcon className="h-5 w-5" />
+      {/* Launcher button + hover tooltip */}
+      <div className="group fixed bottom-5 right-5 z-50 sm:bottom-6 sm:right-6">
+        {!open && (
+          <span className="pointer-events-none absolute right-14 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-md border border-border bg-card/95 px-3 py-1.5 text-xs text-foreground opacity-0 shadow-lg backdrop-blur-md transition-opacity duration-200 group-hover:opacity-100">
+            Ask me anything about Jawad
+          </span>
         )}
-      </button>
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Close chat" : "Ask me anything about Jawad"}
+          className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-card/90 text-primary shadow-lg backdrop-blur-md transition-all hover:bg-primary/10"
+        >
+          {open ? (
+            <CloseIcon className="h-5 w-5" />
+          ) : (
+            <ChatIcon className="h-5 w-5" />
+          )}
+        </button>
+      </div>
 
       {/* Panel */}
       {open && (
@@ -128,14 +146,23 @@ export default function ChatWidget() {
                 }
               >
                 <div
-                  className={`max-w-[85%] whitespace-pre-wrap rounded-lg px-3 py-2 text-sm leading-relaxed ${
+                  className={`max-w-[85%] rounded-lg px-3 py-2 text-sm leading-relaxed ${
                     m.role === "user"
-                      ? "bg-primary/15 text-foreground"
+                      ? "whitespace-pre-wrap bg-primary/15 text-foreground"
                       : "border border-border bg-foreground/[0.03] text-foreground/90"
                   }`}
                 >
-                  {m.content ||
-                    (loading && i === messages.length - 1 ? "…" : "")}
+                  {m.role === "assistant" ? (
+                    m.content ? (
+                      <Markdown>{m.content}</Markdown>
+                    ) : loading && i === messages.length - 1 ? (
+                      "…"
+                    ) : (
+                      ""
+                    )
+                  ) : (
+                    m.content
+                  )}
                 </div>
               </div>
             ))}
