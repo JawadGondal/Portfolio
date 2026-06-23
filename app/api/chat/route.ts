@@ -1,4 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 import { SYSTEM_PROMPT } from "./profile";
 
 // Public, billed-to-your-key endpoint — keep it cheap and abuse-resistant:
@@ -8,13 +10,24 @@ const MAX_TOKENS = 800;
 const MAX_MESSAGES = 20;
 const MAX_CHARS_PER_MESSAGE = 2000;
 
-// Best-effort in-memory rate limit. On serverless this is per-instance (not
-// global), so it's a guard rail, not a hard quota — good enough for a portfolio.
 const RATE_LIMIT = 20; // requests
 const RATE_WINDOW_MS = 5 * 60_000; // per 5 minutes
+
+// Prefer a global Upstash limiter when configured (works across serverless
+// instances). Falls back to a best-effort in-memory limiter for local dev or
+// when Upstash env vars are absent.
+const upstash =
+  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
+    ? new Ratelimit({
+        redis: Redis.fromEnv(),
+        limiter: Ratelimit.slidingWindow(RATE_LIMIT, "5 m"),
+        prefix: "portfolio-chat",
+      })
+    : null;
+
 const hits = new Map<string, { count: number; resetAt: number }>();
 
-function rateLimited(ip: string): boolean {
+function inMemoryLimited(ip: string): boolean {
   const now = Date.now();
   const entry = hits.get(ip);
   if (!entry || now > entry.resetAt) {
@@ -23,6 +36,14 @@ function rateLimited(ip: string): boolean {
   }
   entry.count += 1;
   return entry.count > RATE_LIMIT;
+}
+
+async function rateLimited(ip: string): Promise<boolean> {
+  if (upstash) {
+    const { success } = await upstash.limit(ip);
+    return !success;
+  }
+  return inMemoryLimited(ip);
 }
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
@@ -55,7 +76,7 @@ export async function POST(request: Request) {
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
     "unknown";
-  if (rateLimited(ip)) {
+  if (await rateLimited(ip)) {
     return Response.json(
       { error: "Too many requests. Please try again in a few minutes." },
       { status: 429 },

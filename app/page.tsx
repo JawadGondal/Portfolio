@@ -2,8 +2,10 @@
 // Sections: hero, about, projects, experience, skills, contact.
 // Content lives here for now; we split into data files later.
 
+import Image from "next/image";
 import Nav from "./nav";
 import Reveal from "./reveal";
+import profilePic from "./profile-pic.jpeg";
 import {
   ArrowUpRightIcon,
   ChevronDownIcon,
@@ -211,6 +213,18 @@ export default function Home() {
         />
 
         <Reveal className="relative">
+          <div className="mb-7 h-20 w-20 overflow-hidden rounded-2xl ring-1 ring-border">
+            <Image
+              src={profilePic}
+              alt="Muhammad Jawad Ayub Gondal"
+              width={80}
+              height={80}
+              placeholder="blur"
+              priority
+              className="h-full w-full object-cover"
+            />
+          </div>
+
           <div className="mb-6 flex items-center gap-2 font-mono text-xs text-accent/60">
             <span className="inline-block h-px w-4 bg-accent/50" />
             Agentic AI Full-Cycle Engineer · Islamabad
