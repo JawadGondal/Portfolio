@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Outfit, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ChatWidget from "./chat-widget";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -24,9 +25,9 @@ export const metadata: Metadata = {
   // TODO: set this to the real production domain so the OG image and other
   // metadata resolve to absolute URLs.
   metadataBase: new URL("https://jawadgondal.vercel.app"),
-  title: "Muhammad Jawad Ayub Gondal — Agentic Full-Cycle Engineer",
+  title: "Muhammad Jawad Ayub Gondal — Agentic AI Full-Cycle Engineer",
   description:
-    "Agentic Full-Cycle Engineer in Islamabad. I take AI products from idea to deployment — agentic systems built and shipped end to end.",
+    "Agentic AI Full-Cycle Engineer in Islamabad. I take AI products from idea to deployment — agentic systems built and shipped end to end.",
 };
 
 export default function RootLayout({
@@ -63,6 +64,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <ChatWidget />
       </body>
     </html>
   );

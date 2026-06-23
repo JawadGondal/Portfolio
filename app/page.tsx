@@ -78,7 +78,7 @@ const projects = [
 const experience = [
   {
     company: "MindHYVE.ai",
-    role: "Agentic Full-Cycle Engineer",
+    role: "Agentic AI Full-Cycle Engineer",
     period: "Nov 2025 — Present",
     location: "Islamabad",
     description:
@@ -213,7 +213,7 @@ export default function Home() {
         <Reveal className="relative">
           <div className="mb-6 flex items-center gap-2 font-mono text-xs text-accent/60">
             <span className="inline-block h-px w-4 bg-accent/50" />
-            Agentic Full-Cycle Engineer · Islamabad
+            Agentic AI Full-Cycle Engineer · Islamabad
           </div>
 
           <h1 className="mb-8 font-serif text-6xl font-black leading-[0.95] tracking-tight text-foreground sm:text-7xl md:text-8xl">
@@ -275,21 +275,24 @@ export default function Home() {
             </SectionTitle>
             <div className="flex flex-col gap-5 text-base leading-relaxed text-foreground/70">
               <p>
-                I&apos;m an Agentic AI Engineer based in Islamabad. Currently at
-                MindHYVE.ai working on adaptive learning systems with cognitive
-                profiling and personalization engines. Before that I built
-                across AI Mark Labs, Metrico Dev, ITSOLERA, and freelance.
+                I&apos;m an Agentic AI Full-Cycle Engineer based in Islamabad.
+                At MindHYVE.ai I own products end to end — designing, building,
+                integrating, and deploying complete AI systems solo, working
+                alongside AI-assisted development to move fast without losing
+                precision.
               </p>
               <p>
-                My stack is Python, FastAPI, LangChain, LlamaIndex, CrewAI,
-                Anthropic and OpenAI APIs, Pinecone, Weaviate, and Next.js. I
-                hold an MS in Systems Engineering from PIEAS and a BS in
-                Electrical Engineering from GIK Institute.
+                Before MindHYVE I built across AI Mark Labs, Metrico Dev,
+                ITSOLERA, and years of freelance work — RAG systems, tool-using
+                agents, chatbots, and the data pipelines behind them. My stack
+                is Python, FastAPI, LangChain, LlamaIndex, CrewAI, Anthropic and
+                OpenAI APIs, Pinecone, and Weaviate, with Next.js on the front
+                end.
               </p>
               <p>
-                I work best when I get to own a system end to end, from
-                architecture to deployment — and I care about making models
-                reason reliably in production, not just in demos.
+                I hold an MS in Systems Engineering from PIEAS and a BS in
+                Electrical Engineering from GIK Institute. I care about making
+                models reason reliably in production, not just in demos.
               </p>
               <div className="mt-4 grid grid-cols-3 gap-6 border-t border-border pt-6">
                 {stats.map(({ val, label }) => (
@@ -514,7 +517,7 @@ export default function Home() {
           © 2026 Muhammad Jawad Ayub Gondal
         </span>
         <span className="font-mono text-xs text-muted-foreground/50">
-          Agentic AI Engineer · Islamabad
+          Agentic AI Full-Cycle Engineer · Islamabad
         </span>
       </footer>
     </div>
