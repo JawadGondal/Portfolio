@@ -54,7 +54,7 @@ export default function Nav() {
           href="#top"
           className="font-mono text-sm text-accent/80 transition-colors hover:text-accent"
         >
-          m.jawad
+          Jawad Gondal
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">

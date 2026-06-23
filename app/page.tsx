@@ -213,7 +213,7 @@ export default function Home() {
         <Reveal className="relative">
           <div className="mb-6 flex items-center gap-2 font-mono text-xs text-accent/60">
             <span className="inline-block h-px w-4 bg-accent/50" />
-            Agentic AI Engineer · Islamabad
+            Agentic Full-Cycle Engineer · Islamabad
           </div>
 
           <h1 className="mb-8 font-serif text-6xl font-black leading-[0.95] tracking-tight text-foreground sm:text-7xl md:text-8xl">
@@ -225,9 +225,10 @@ export default function Home() {
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:gap-16">
             <div className="max-w-lg">
               <p className="mb-6 text-lg leading-relaxed text-foreground/70">
-                I build LLM systems that take actions, not just answers —
-                retrieval pipelines, tool-using agents, and the glue that makes
-                them reliable in production. Currently at{" "}
+                I take AI products from idea to deployment — designing,
+                building, and shipping agentic systems end to end. Retrieval
+                pipelines, tool-using agents, and the glue that keeps them
+                reliable in production. Currently at{" "}
                 <span className="text-primary">MindHYVE.ai</span>.
               </p>
               <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
