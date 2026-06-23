@@ -16,6 +16,9 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
+  // TODO: set this to the real production domain so the OG image and other
+  // metadata resolve to absolute URLs.
+  metadataBase: new URL("https://jawadgondal.vercel.app"),
   title: "Muhammad Jawad Ayub Gondal — Agentic AI Engineer",
   description:
     "Agentic AI engineer in Islamabad. I build LLM systems that take actions, not just answers.",

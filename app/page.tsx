@@ -1,6 +1,8 @@
 // Single-page portfolio. Sections are added in order: hero, work, about, contact.
 // All content lives here for now; we split into data files later.
 
+import Nav from "./nav";
+
 const EMAIL = "jawadayubgondal@gmail.com";
 const LINKEDIN_URL =
   "https://www.linkedin.com/in/m-jawad-ayub-gondal-91103617a";
@@ -36,6 +38,20 @@ const projects = [
     source: "https://github.com/JawadGondal/Agentic-RAG-System",
   },
   {
+    name: "Transcription Service",
+    description:
+      "Audio transcription pipeline served as an API. Streams uploads through faster-whisper for fast, accurate speech-to-text.",
+    stack: ["FastAPI", "faster-whisper", "Python"],
+    source: "https://github.com/JawadGondal/transcription-service",
+  },
+  {
+    name: "AI News Generator",
+    description:
+      "Multi-LLM workflow that gathers, edits, and analyzes news, then turns it into curated insights.",
+    stack: ["Python", "OpenAI", "LLMs"],
+    source: "https://github.com/JawadGondal/AI-Powered-News-Generator",
+  },
+  {
     name: "Slide Worlds",
     description:
       "Sliding puzzle game shipped on Google Play. Built solo end to end, from gameplay to store submission.",
@@ -47,17 +63,24 @@ const projects = [
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
+      <Nav />
       <main className="mx-auto w-full max-w-[720px] flex-1 px-6">
         <section
           id="top"
           aria-label="Introduction"
-          className="flex flex-col pt-24 pb-16 sm:pt-28"
+          className="flex flex-col pt-16 pb-16 sm:pt-20"
         >
+          {/* Headshot placeholder. Replace with the real image later. */}
+          <div
+            aria-hidden
+            className="mb-6 h-24 w-24 rounded-xl bg-foreground/[0.07] ring-1 ring-border"
+          />
+
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-muted">
-            Agentic AI Engineer
+            Agentic AI Engineer · Islamabad
           </p>
 
-          <h1 className="mt-5 font-serif text-5xl leading-[1.02] tracking-tight text-foreground sm:text-6xl">
+          <h1 className="mt-5 font-serif text-6xl leading-[1.02] tracking-tight text-foreground sm:text-7xl">
             Muhammad Jawad Ayub Gondal
           </h1>
 
@@ -106,55 +129,64 @@ export default function Home() {
             {projects.map((project) => (
               <article
                 key={project.name}
-                className="rounded-lg border border-border bg-foreground/[0.01] p-6 transition-colors hover:border-foreground/25 hover:bg-foreground/[0.02] sm:p-8"
+                className="flex flex-col-reverse gap-5 rounded-lg border border-border bg-foreground/[0.01] p-6 transition-colors hover:border-foreground/25 hover:bg-foreground/[0.02] sm:flex-row sm:items-start sm:gap-6 sm:p-8"
               >
-                <h3 className="text-xl font-semibold tracking-tight text-foreground">
-                  {project.name}
-                </h3>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold tracking-tight text-foreground">
+                    {project.name}
+                  </h3>
 
-                <p className="mt-2 max-w-xl text-base leading-relaxed text-muted">
-                  {project.description}
-                </p>
+                  <p className="mt-2 text-base leading-relaxed text-muted">
+                    {project.description}
+                  </p>
 
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {project.stack.map((tech) => (
-                    <li
-                      key={tech}
-                      className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted"
-                    >
-                      {tech}
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {project.stack.map((tech) => (
+                      <li
+                        key={tech}
+                        className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted transition-colors hover:border-accent/50 hover:text-foreground"
+                      >
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
 
-                <div className="mt-5 flex gap-5 text-sm font-medium">
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target={
-                        project.live.startsWith("http") ? "_blank" : undefined
-                      }
-                      rel={
-                        project.live.startsWith("http")
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
-                      className="text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
-                    >
-                      Live demo
-                    </a>
-                  )}
-                  {project.source && (
-                    <a
-                      href={project.source}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
-                    >
-                      Source
-                    </a>
-                  )}
+                  <div className="mt-5 flex gap-5 text-sm font-medium">
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target={
+                          project.live.startsWith("http") ? "_blank" : undefined
+                        }
+                        rel={
+                          project.live.startsWith("http")
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
+                        className="text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                      >
+                        Live demo
+                      </a>
+                    )}
+                    {project.source && (
+                      <a
+                        href={project.source}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                      >
+                        Source
+                      </a>
+                    )}
+                  </div>
                 </div>
+
+                {/* Screenshot placeholder. 16:10, stacks above the text on
+                    mobile and sits to the right on larger screens. */}
+                <div
+                  aria-hidden
+                  className="aspect-[16/10] w-full shrink-0 rounded-md bg-foreground/[0.06] ring-1 ring-border sm:w-[200px]"
+                />
               </article>
             ))}
           </div>

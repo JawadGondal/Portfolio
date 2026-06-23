@@ -5,7 +5,7 @@
   --foreground: #141414;
   --muted: #565656;
   --border: #e3e3e3;
-  --accent: #2f5fe0;
+  --accent: #c2410c;
 }
 
 @theme inline {
@@ -24,6 +24,8 @@ html {
   /* Reserve the scrollbar gutter on both sides so the centered column
      never shifts when a vertical scrollbar appears or disappears. */
   scrollbar-gutter: stable both-edges;
+  /* Offset anchor jumps so section tops clear the sticky nav. */
+  scroll-padding-top: 4rem;
 }
 
 body {
