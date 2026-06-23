@@ -75,40 +75,46 @@ const projects = [
   },
 ];
 
-// TODO: fill in real periods and descriptions for each role. The "20XX"
-// values are placeholders — replace them with your actual dates.
 const experience = [
   {
     company: "MindHYVE.ai",
-    role: "Agentic AI Engineer",
-    period: "20XX — Present",
-    location: "Remote · Islamabad",
+    role: "Agentic Full-Cycle Engineer",
+    period: "Nov 2025 — Present",
+    location: "Islamabad",
     description:
-      "Building adaptive learning systems with cognitive profiling and personalization engines — designing the retrieval and agent layers that make them reliable.",
+      "One-product, one-developer ownership — designing, building, integrating, and deploying complete AI products end to end with AI-assisted development.",
   },
   {
     company: "AI Mark Labs",
-    role: "AI Engineer",
-    period: "20XX — 20XX",
-    location: "Remote",
+    role: "AI/ML Data Engineer",
+    period: "Jul 2025 — Sep 2025",
+    location: "Islamabad",
     description:
-      "Built LLM-powered features and data pipelines across client projects, from prototype to production deployment.",
+      "Built AI workflows, RAG systems, agents, and chatbots for Evolo AI, plus data engineering and RESTful APIs.",
   },
   {
     company: "Metrico Dev",
-    role: "AI Engineer",
-    period: "20XX — 20XX",
-    location: "Remote",
+    role: "Software Engineer (AI & Analytics)",
+    period: "Nov 2024 — Jun 2025",
+    location: "Islamabad",
     description:
-      "Delivered applied AI and full-stack work, integrating model APIs into real product workflows.",
+      "Research on quantum neural networks for network intrusion detection, alongside applied AI and analytics engineering.",
   },
   {
     company: "ITSOLERA",
-    role: "AI Engineer",
-    period: "20XX — 20XX",
+    role: "Generative AI Engineer",
+    period: "Jul 2024 — Oct 2024",
     location: "Islamabad",
     description:
-      "Worked on AI engineering and backend systems, shipping features end to end.",
+      "Built an AI news generator, a ChEMBL-based drug-discovery system, and a multi-agent parenting assistant using LangChain, Gradio, and Cohere.",
+  },
+  {
+    company: "Freelance",
+    role: "AI Engineer",
+    period: "Feb 2023 — Jun 2025",
+    location: "Islamabad",
+    description:
+      "LangChain and LLM model development, ML and deep learning, agent-based systems, and Python ETL pipelines for clients.",
   },
 ];
 
@@ -276,8 +282,8 @@ export default function Home() {
               <p>
                 My stack is Python, FastAPI, LangChain, LlamaIndex, CrewAI,
                 Anthropic and OpenAI APIs, Pinecone, Weaviate, and Next.js. I
-                hold an MS in Systems Engineering from GIK Institute and a BS in
-                Electrical Engineering from PIEAS.
+                hold an MS in Systems Engineering from PIEAS and a BS in
+                Electrical Engineering from GIK Institute.
               </p>
               <p>
                 I work best when I get to own a system end to end, from
